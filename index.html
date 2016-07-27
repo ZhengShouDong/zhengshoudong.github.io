@@ -69,7 +69,7 @@
 						<li>Tags</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -206,52 +206,6 @@
       
         <p>##iOS_UI面试题目与答案整理</p>
 <p>UI基础面试题整理 更新中</p>
-<p>1.怎么解决缓存池满的问题(Cell)</p>
-<p>ios中不存在缓存池满的情况，因为通常我们ios中开发，对象都是在需要的时候才会创建，有种常用的说话叫做懒加载，还有在UITableView中一般只会创建刚开始出现在屏幕中的cell，之后都是从缓存池里取，不会在创建新对象。缓存池里最多也就一两个对象，缓存池满的这种情况一般在开发Java中比较常见，Java中一般把最近最少使用的对象先释放。</p>
-<p>2.UIButton与UITableView的层级结构</p>
-<p>1&gt; 继承结构</p>
-<p>2&gt; 内部的子控件结构</p>
-<p>3.设置scrollView的contentSize能在viewDidLoad里设置么,为什么?</p>
-<p>能,因为在autolayout下,会在viewDidAppear之前根据subview的constraint重新计算scrollview的contentsize</p>
-<p>4.说一说代理模式是什么?</p>
-<p>代理模式是一种通用的设计模式,代理主要由三部分组成:</p>
-<ul>
-<li>协议：用来指定代理双方可以做什么，必须做什么。</li>
-<li>代理：根据指定的协议，完成委托方需要实现的功能。</li>
-<li>委托：根据指定的协议，指定代理去完成什么功能。</li>
-</ul>
-<p>5.常使用的适配方式是什么?平时是怎样实现适配的?</p>
-<ul>
-<li>AutoLayout布局</li>
-<li>Autoresizing Mask</li>
-<li>IOS自适配利器Masonry</li>
-</ul>
-<p>平时是用纯代码Masonry实现UI适配的</p>
-<p>6.在一个tableView 中需要自定义多种样式的cell(两种或三种),通常你如何实现,说说思路即可?</p>
-<p>7.tableview的cell里如何嵌套collection view？</p>
-<p>首先你需要建立模型，请求数据。有了模型和数据之后，搭建框架，建立tableView，创建cell（tableView）。</p>
-<p>主要思路：在cell上加一个backView，再在backView上添加CollectionView</p>
-<p>tableViewCell.h:</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//背景View</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIView</span> *backView;</div><div class="line"><span class="comment">//CollectionView</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> ImageCollectionView *imageCollection;</div></pre></td></tr></table></figure>
-<p> tableViewCell.m</p>
- <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//此处引入ControllerViewCell，由于我的CollectionView只放图片，所以叫ImageControllerView</span></div><div class="line"> <span class="meta">#import <span class="meta-string">"ImageCollectionViewCell.h"</span></span></div><div class="line"><span class="comment">//遵循协议</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DetailTableViewCell</span> ()&lt;<span class="title">UICollectionViewDataSource</span>,<span class="title">UICollectionViewDelegate</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="comment">//标识符</span></div><div class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> reuseIdentifier = <span class="string">@"ImageCollectionViewCell"</span>;</div><div class="line">- (<span class="keyword">void</span>)awakeFromNib &#123;</div><div class="line">    <span class="comment">//此处是我给头像削圆角</span></div><div class="line">    <span class="keyword">self</span>.ownerHeaderImage.layer.cornerRadius = <span class="keyword">self</span>.ownerHeaderImage.bounds.size.width/<span class="number">2</span>;</div><div class="line">    <span class="keyword">self</span>.ownerHeaderImage.layer.masksToBounds = <span class="literal">YES</span>;</div><div class="line"></div><div class="line">    <span class="comment">//布局</span></div><div class="line">    <span class="built_in">UICollectionViewFlowLayout</span> * flowLayout = [[<span class="built_in">UICollectionViewFlowLayout</span> alloc] init];</div><div class="line">    <span class="comment">//根据自己的需求设置宽高</span></div><div class="line">    [flowLayout setItemSize:<span class="built_in">CGSizeMake</span>(<span class="keyword">self</span>.backView.frame.size.width, <span class="number">150</span>)];</div><div class="line">    <span class="comment">//竖直滑动</span></div><div class="line">    [flowLayout setScrollDirection:<span class="built_in">UICollectionViewScrollDirectionVertical</span>];</div><div class="line"><span class="comment">//内边距，列、行间距</span></div><div class="line">    flowLayout.sectionInset = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">    flowLayout.minimumInteritemSpacing = <span class="number">0</span>;</div><div class="line">    flowLayout.minimumLineSpacing = <span class="number">0</span>;</div><div class="line"></div><div class="line">    [<span class="keyword">self</span>.imageCollection setCollectionViewLayout:flowLayout];</div><div class="line"><span class="comment">//注册（xib）</span></div><div class="line">    [<span class="keyword">self</span>.imageCollection registerNib:[<span class="built_in">UINib</span> nibWithNibName:<span class="string">@"ImageCollectionViewCell"</span> bundle:<span class="literal">nil</span>] forCellWithReuseIdentifier:reuseIdentifier];</div><div class="line"><span class="comment">//代理、数据源（也可以拖线）</span></div><div class="line">    <span class="keyword">self</span>.imageCollection.delegate = <span class="keyword">self</span>;</div><div class="line">    <span class="keyword">self</span>.imageCollection.dataSource = <span class="keyword">self</span>;</div><div class="line"> <span class="comment">//添加到背景View上（此处可以不写，也可以实现，写代码写习惯了，总想写）</span></div><div class="line">  <span class="comment">//  [self.backView addSubview:self.imageCollection];  </span></div><div class="line">&#125;</div><div class="line">- (<span class="built_in">NSInteger</span>)numberOfSectionsInCollectionView:(<span class="built_in">UICollectionView</span> *)collectionView&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSInteger</span>)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView numberOfItemsInSection:(<span class="built_in">NSInteger</span>)section&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line">- (<span class="built_in">UICollectionViewCell</span> *)collectionView:(<span class="built_in">UICollectionView</span> *)collectionView cellForItemAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</div><div class="line"></div><div class="line">    ImageCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];</div><div class="line">    <span class="keyword">return</span> cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>8.关于cell的复用问题? cell的复用机制?</p>
-<p> UITableViewCell复用机制的原理很简单，就是创建一屏的cell,滚动时将消失的cell放在接下来要出现的cell。</p>
- <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> -(<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView  cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</div><div class="line">    <span class="comment">//第一步，先去内存中查找标志为cell的UITableViewCell            </span></div><div class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="string">@"cell"</span>];</div><div class="line"></div><div class="line">    <span class="comment">//第二步，如果不存在就创建一个标志为cell的UITableView</span></div><div class="line">    <span class="keyword">if</span> (cell == <span class="literal">nil</span>) &#123;</div><div class="line">        cell  = [[<span class="built_in">UITableViewCell</span> alloc] initWithStyle:<span class="built_in">UITableViewCellStyleDefault</span> reuseIdentifier:<span class="string">@"cell"</span>];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">     <span class="comment">//第三步，设置cell中要显示的值   </span></div><div class="line">    cell.textLabel.text = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"第%ld组第%ld行"</span>,indexPath.section,indexPath.row];</div><div class="line">    <span class="keyword">return</span> cell;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>9.UIscrollVew 用到了什么设计模式?还能再 foundation 库中找到类似的吗?</p>
-<p>10.沙盒的目录结构是怎样的？有哪些注意点?</p>
-<p>11.谈一谈你是怎么封装 view 的</p>
-<p>12.6\7 适配怎么进行的?</p>
-<p>13.autolayout?</p>
-<p>14.什么情况使用 weak 关键字,相比 assign 有 什么不同? </p>
-<p>15.若一个类有实例变量 NSString *_foo,调用 setValue:forKey:时,是以 foo 还是_foo 作为 key? </p>
-<p>16.KVC 的 keyPath 中的集合运算符如何使用?</p>
-<p>17.Size Classes 具体使用</p>
-<p>18.IBOutlet 连出来的视图属性为什么可以被设 置成 weak?</p>
-<p>19.请简述 UITableView 的复用机制</p>
-<p>20.以+scheduledTimerWithTimeInterval… 的方式触发的timer,在滑动页面上的列表时, timer 会暂定回调,为什么?如何解决?</p>
-<p>21.什么时候会报 unrecognized selector 的异常?</p>
-
       
     </div>
     
@@ -264,6 +218,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/07/27/iOS-UI面试题目与答案整理/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
