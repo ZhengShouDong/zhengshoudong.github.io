@@ -268,34 +268,6 @@
         <p>#Block与GCD笔记</p>
 <p>1.定义block:</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">第一种：（直接写）</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">copy</span>) <span class="keyword">void</span>(^MyBlock)(<span class="keyword">void</span>);			</div><div class="line">第二种：（<span class="keyword">typedef</span>）</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^MyBlock)(<span class="keyword">void</span>);</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) MyBlock block;</div></pre></td></tr></table></figure>
-<p>####语法<br>Block语法</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">^ 返回值类型 参数列表 表达式</div><div class="line">^ 参数列表 表达式 <span class="comment">(省略返回值类型)</span></div><div class="line">^ 表达式 （省略参数列表）</div></pre></td></tr></table></figure>
-<p>####Block变量类型<br>自动变量： 返回值类型 (^类型名称)(参数列表)</p>
-<p>函数参数： 返回值类型 (^类型名称)(参数列表) 返回值参数： ^类型名称()（参数列表） 使用typedef 更方便</p>
-<p>####注意点</p>
-<ul>
-<li>当 block 调用 copy 方法时，如果 block 在栈上，会被拷贝到堆上；</li>
-<li>当 block 作为函数返回值返回时，编译器自动将 block 作为 _Block_copy 函数，效果等同于 block 直接调用 copy 方法；</li>
-<li>当 block 被赋值给 __strong id 类型的对象或 block 的成员变量时，编译器自动将 block 作为 _Block_copy 函数，效果等同于 block 直接调用 copy 方法；</li>
-<li>当 block 作为参数被传入方法名带有 usingBlock 的 Cocoa Framework 方法或 GCD 的 API 时。这些方法会在内部对传递进来的 block 调用 copy 或 _Block_copy 进行拷贝;</li>
-</ul>
-<p>####Block强引用的解决</p>
-<ul>
-<li>1.在block里面不用使用self，解决方案：推荐 __weak typeof(self) weakSelf = self(弱引用);</li>
-<li>2.强引用bug<br>如果你发现你的控制器pop后任然不会销毁，可能是你在block中使用了self从而强引用了控制器。</li>
-<li>3.但不是所有的block里面就需要处理里面的变量，因为有的block声明周期就很短，执行完后就不存在了就不用处理，如UIView的动画。</li>
-<li>4.为了方便以后使用我们可以将 __weak typeof(self) weakSelf = self语句抽取为宏</li>
-</ul>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 宏抽取</span></div><div class="line">#define JPWeakSelf  __weak typeof(<span class="built_in">self</span>) weakSelf = <span class="built_in">self</span>; <span class="comment">// (弱引用)</span></div></pre></td></tr></table></figure>
-<p>####Block可以访问局部变量，但是不能修改它的值；如果要修改的话该变量必须用__block修饰；<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a = <span class="number">10</span>； <span class="keyword">void</span>(^BlockName)() = ^&#123;  a++;  &#125;;</div></pre></td></tr></table></figure></p>
-<p>此处a的值不能修改;</p>
-<p>原因：此处不能修改的原因是在编译期间确定的，编译器编译的时候把a的值复制到block作为一个新变量（假设是a‘ = 10），此时a’和a是没有关系的</p>
-<p>####如果block块里边有self这样的代码， self必须用__weak 修饰；<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">__<span class="keyword">self</span> ViewController *controller = <span class="keyword">self</span>;</div><div class="line"><span class="keyword">void</span>(^BlockName)() = ^&#123;  <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, controller.string); &#125;;</div></pre></td></tr></table></figure></p>
-<p>原因：block会对内部的对象进行一次retain，也就是说self会被retain一次。当self释放的时候，需要block释放后才会对self进行释放，但是block的释放又需要等self的dealloc中才会释放。如此一来变形成了循环引用，导致内存泄露。（一句话防止循环引用）</p>
-<p>####在申明block属性的时候用copy 后者strong修饰；<br>因为默认情况下，block是存档在栈中，可能被随时回收，需要copy到堆区一份，防止被释放掉；<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">property</span>（<span class="keyword">copy</span>，<span class="keyword">nonatomic</span>）<span class="keyword">BlockName</span>  myBlock；</div></pre></td></tr></table></figure></p>
-<p>####在多线程环境下（block中的weakSelf有可能被析构的情况下），需要先将self转为strong指针，避免在运行到某个关键步骤时self对象被析构;<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">__<span class="keyword">weak</span> __<span class="keyword">typeof</span>(<span class="keyword">self</span>)weakSelf =<span class="keyword">self</span>;</div><div class="line">AFNetworkReachabilityStatusBlock callback= ^(AFNetworkReachabilityStatus status) &#123;</div><div class="line">		__<span class="keyword">strong</span> __<span class="keyword">typeof</span>(weakSelf)strongSelf=weakSelf;</div><div class="line">	strongSelf.networkReachabilityStatus=status;<span class="keyword">if</span>(strongSelf.networkReachabilityStatusBlock) &#123;</div><div class="line">	strongSelf.networkReachabilityStatusBlock(status);</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<hr>
-
       
     </div>
     
@@ -308,6 +280,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/07/27/Block与GCD笔记/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
