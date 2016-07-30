@@ -8,32 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="#因为一些原因,更新Hosts文件更新器,版本2.2
 
-具体原因不想说了,添加了一个单独的功能,还原原始Hosts文件
-以前版本1.1,2.1可以照常使用,此版本号为2.2
-更新日期:2016.7.30 15:15
-
-版本2.2 [下载链接](http://zhengshoudong.qiniudn.com/ZHosts2.2.dmg)">
+具体原因不想说了,添加了一个单独的功能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="因为一些原因更新一下Hosts更新器">
 <meta property="og:url" content="https://zhengshoudong.github.io/2016/07/30/因为一些原因更新一下Hosts更新器/index.html">
 <meta property="og:site_name" content="ZhengShouDong_Blog">
 <meta property="og:description" content="#因为一些原因,更新Hosts文件更新器,版本2.2
 
-具体原因不想说了,添加了一个单独的功能,还原原始Hosts文件
-以前版本1.1,2.1可以照常使用,此版本号为2.2
-更新日期:2016.7.30 15:15
-
-版本2.2 [下载链接](http://zhengshoudong.qiniudn.com/ZHosts2.2.dmg)">
-<meta property="og:updated_time" content="2016-07-30T07:15:30.000Z">
+具体原因不想说了,添加了一个单独的功能">
+<meta property="og:updated_time" content="2016-07-30T07:17:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="因为一些原因更新一下Hosts更新器">
 <meta name="twitter:description" content="#因为一些原因,更新Hosts文件更新器,版本2.2
 
-具体原因不想说了,添加了一个单独的功能,还原原始Hosts文件
-以前版本1.1,2.1可以照常使用,此版本号为2.2
-更新日期:2016.7.30 15:15
-
-版本2.2 [下载链接](http://zhengshoudong.qiniudn.com/ZHosts2.2.dmg)">
+具体原因不想说了,添加了一个单独的功能">
   
     <link rel="alternative" href="/atom.xml" title="ZhengShouDong_Blog" type="application/atom+xml">
   
@@ -233,7 +221,7 @@
       
         <p>#因为一些原因,更新Hosts文件更新器,版本2.2</p>
 <ul>
-<li>具体原因不想说了,添加了一个单独的功能,还原原始Hosts文件</li>
+<li>具体原因不想说了,添加了一个单独的功能<a id="more"></a>:还原原始Hosts文件</li>
 <li>以前版本1.1,2.1可以照常使用,此版本号为2.2</li>
 <li>更新日期:2016.7.30 15:15</li>
 </ul>
@@ -302,52 +290,32 @@
   </div>
 </footer>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
+    <% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+<% } %>
 
 <script>
 	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
+		fancybox: <%=theme.fancybox%>,
+		mathjax: <%=theme.mathjax%>,
+		animate: <%=theme.animate%>,
+		isHome: <%=is_home()%>,
+		isPost: <%=is_post()%>,
+		isArchive: <%=is_archive()%>,
+		isTag: <%=is_tag()%>,
+		isCategory: <%=is_category()%>,
+		open_in_new: <%=theme.open_in_new%>
 	}
 </script>
-<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
+<%- js('js/main') %>
 
 
+<%- partial('google-analytics') %>
 
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
+<% if (theme.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
   </div>
 </body>
 </html>
