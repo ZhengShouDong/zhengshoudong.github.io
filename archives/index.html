@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives | ZhengShouDong_Blog</title>
+  <title>Archives | ZhengShouDong_Blog|郑守栋博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="ZhengShouDong_Blog">
+<meta property="og:title" content="ZhengShouDong_Blog|郑守栋博客">
 <meta property="og:url" content="https://zhengshoudong.github.io/archives/index.html">
-<meta property="og:site_name" content="ZhengShouDong_Blog">
+<meta property="og:site_name" content="ZhengShouDong_Blog|郑守栋博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZhengShouDong_Blog">
+<meta name="twitter:title" content="ZhengShouDong_Blog|郑守栋博客">
   
-    <link rel="alternative" href="/atom.xml" title="ZhengShouDong_Blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="ZhengShouDong_Blog|郑守栋博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -38,7 +38,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">Talk is cheap,show me the code.🌀</p>
+		<p class="header-subtitle">🌀</p>
 		
 
 		
@@ -143,7 +143,7 @@
 			  <h1 class="header-author">ZhengShouDong</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">Talk is cheap,show me the code.🌀</p>
+			<p class="header-subtitle">🌀</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -392,52 +392,32 @@
   </div>
 </footer>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
+    <% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+<% } %>
 
 <script>
 	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: false,
-		isArchive: true,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
+		fancybox: <%=theme.fancybox%>,
+		mathjax: <%=theme.mathjax%>,
+		animate: <%=theme.animate%>,
+		isHome: <%=is_home()%>,
+		isPost: <%=is_post()%>,
+		isArchive: <%=is_archive()%>,
+		isTag: <%=is_tag()%>,
+		isCategory: <%=is_category()%>,
+		open_in_new: <%=theme.open_in_new%>
 	}
 </script>
-<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
+<%- js('js/main') %>
 
 
+<%- partial('google-analytics') %>
 
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="js/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
+<% if (theme.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
   </div>
 </body>
 </html>
