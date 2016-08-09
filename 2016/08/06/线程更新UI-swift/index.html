@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://zhengshoudong.github.io/2016/08/06/线程更新UI-swift/index.html">
 <meta property="og:site_name" content="ZhengShouDong_Blog|郑守栋博客">
 <meta property="og:description" content="##线程常用代码–笔记">
-<meta property="og:updated_time" content="2016-08-06T09:55:28.000Z">
+<meta property="og:updated_time" content="2016-08-09T05:15:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程更新UI_swift">
 <meta name="twitter:description" content="##线程常用代码–笔记">
@@ -216,7 +216,7 @@
       
         <p>##线程常用代码–笔记</p>
 <a id="more"></a>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.全局-异步回调主线程（加优先级）</span></div><div class="line"><span class="function"><span class="title">dispatch_async</span><span class="params">(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>)</span></span>, &#123;</div><div class="line">     dispatch_sync(dispatch_get_main_queue(),&#123;</div><div class="line">          <span class="comment">// do something                       </span></div><div class="line">     &#125;)</div><div class="line">&#125;)</div><div class="line"><span class="comment">//2.全局异步回调（优先级）                            </span></div><div class="line"><span class="function"><span class="title">dispatch_async</span><span class="params">(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>)</span></span>)&#123;</div><div class="line">          <span class="comment">// do something</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//3.异步回调主线程</span></div><div class="line"><span class="function"><span class="title">dispatch_async</span><span class="params">(dispatch_get_main_queue()</span></span>,&#123;</div><div class="line">          <span class="comment">// do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.全局-异步回调主线程（加优先级）</span></div><div class="line"><span class="function"><span class="title">dispatch_async</span><span class="params">(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>)</span></span>, &#123;</div><div class="line">     dispatch_sync(dispatch_get_main_queue(),&#123;</div><div class="line">          <span class="comment">// do something                       </span></div><div class="line">     &#125;)</div><div class="line">&#125;)</div><div class="line"><span class="comment">//2.全局异步回调（优先级）                            </span></div><div class="line"><span class="function"><span class="title">dispatch_async</span><span class="params">(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>)</span></span>)&#123;</div><div class="line">          <span class="comment">// do something</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//3.异步回调主线程</span></div><div class="line"><span class="function"><span class="title">dispatch_async</span><span class="params">(dispatch_get_main_queue()</span></span>,&#123;</div><div class="line">          <span class="comment">// do something</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -291,52 +291,32 @@
   </div>
 </footer>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
+    <% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+<% } %>
 
 <script>
 	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
+		fancybox: <%=theme.fancybox%>,
+		mathjax: <%=theme.mathjax%>,
+		animate: <%=theme.animate%>,
+		isHome: <%=is_home()%>,
+		isPost: <%=is_post()%>,
+		isArchive: <%=is_archive()%>,
+		isTag: <%=is_tag()%>,
+		isCategory: <%=is_category()%>,
+		open_in_new: <%=theme.open_in_new%>
 	}
 </script>
-<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
+<%- js('js/main') %>
 
 
+<%- partial('google-analytics') %>
 
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
+<% if (theme.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
   </div>
 </body>
 </html>
