@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://zhengshoudong.github.io/2016/08/10/关于安装Ruby以及Rvm的方法教程/index.html">
 <meta property="og:site_name" content="ZhengShouDong_Blog|郑守栋博客">
 <meta property="og:description" content="关于安装cocoapods大家遇到最多的问题就是需要ruby的版本&amp;gt;=2.2.2,然后大家跑去安装ruby,发现ruby是依赖于其他的系统库文件,想要安装ruby,就要先安装rvm,坑爹啊 可是我们Mac os系统只是自带了ruby却没有自带rvm,下面说说如何进行安装rvm还有ruby">
-<meta property="og:updated_time" content="2016-08-10T11:52:21.000Z">
+<meta property="og:updated_time" content="2016-08-10T12:00:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于安装Ruby以及Rvm的方法教程">
 <meta name="twitter:description" content="关于安装cocoapods大家遇到最多的问题就是需要ruby的版本&amp;gt;=2.2.2,然后大家跑去安装ruby,发现ruby是依赖于其他的系统库文件,想要安装ruby,就要先安装rvm,坑爹啊 可是我们Mac os系统只是自带了ruby却没有自带rvm,下面说说如何进行安装rvm还有ruby">
@@ -217,15 +217,15 @@
         <p>关于安装cocoapods大家遇到最多的问题就是需要ruby的版本&gt;=2.2.2,然后大家跑去安装ruby,发现ruby是依赖于其他的系统库文件,想要安装ruby,就要先安装rvm,坑爹啊 可是我们Mac os系统只是自带了ruby却没有自带rvm,下面说说如何进行安装rvm还有ruby <a id="more"></a></p>
 <p>##RVM 是一个命令行工具，可以提供一个便捷的多版本 Ruby 环境的管理和切换</p>
 <p>###拷贝以下命令到终端中进行安装,根据操作进行安装</p>
-<p>####安装RVM<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl <span class="_">-s</span>SL https://get.rvm.io | bash <span class="_">-s</span> stable</div></pre></td></tr></table></figure></p>
-<p>####列出已知的Ruby版本<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rvm <span class="built_in">list</span> known</div></pre></td></tr></table></figure></p>
-<p>####安装一个指定的Ruby版本(这里指定的版本为2.3)<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rvm <span class="keyword">install</span> <span class="number">2.3</span></div></pre></td></tr></table></figure></p>
-<p>####设置系统默认版本(这样一来以后新打开的控制台默认的 Ruby 就是这个版本)<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rvm use <span class="number">2.3</span><span class="number">.0</span> --<span class="section">default</span></div></pre></td></tr></table></figure></p>
-<p>####查询已经安装的Ruby版本信息<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rvm <span class="built_in">list</span></div></pre></td></tr></table></figure></p>
-<p>####卸载一个指定的安装的版本<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rvm <span class="built_in">remove</span> <span class="number">2.3</span></div></pre></td></tr></table></figure></p>
+<p>####安装RVM<br><code>curl -sSL https://get.rvm.io | bash -s stable</code></p>
+<p>####列出已知的Ruby版本<br><code>rvm list known</code></p>
+<p>####安装一个指定的Ruby版本(这里指定的版本为2.3)<br><code>rvm install 2.3</code></p>
+<p>####设置系统默认版本(这样一来以后新打开的控制台默认的 Ruby 就是这个版本)<br><code>rvm use 2.3.0 --default</code></p>
+<p>####查询已经安装的Ruby版本信息<br><code>rvm list</code></p>
+<p>####卸载一个指定的安装的版本<br><code>rvm remove 2.3</code></p>
 <p>###接下来我们要做什么?当然是检查一下是否都安装成功了!</p>
-<p>####检测安装的RVM版本(也可以验证是否安装成功,如果不成功.则会提示命令不存在)<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">rvm</span> -v</div></pre></td></tr></table></figure></p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">ruby</span> -v</div></pre></td></tr></table></figure>
+<p>####检测安装的RVM版本(也可以验证是否安装成功,如果不成功.则会提示命令不存在)<br><code>rvm -v</code></p>
+<p><code>ruby -v</code></p>
 <p>####都安装好了接下来我们做什么?<br>当然是是用工具来自动化安装cocoapods工具啦!!</p>
 <p><a href="https://zhengshoudong.github.io/2016/08/09/%E8%A7%89%E5%BE%97%E5%AE%89%E8%A3%85%E6%A1%86%E6%9E%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7CocoaPods%E6%AF%94%E8%BE%83%E7%83%A6%E5%BF%83%E7%9A%84%E7%9C%8B%E8%BF%87%E6%9D%A5!%E7%A6%8F%E5%88%A9!/">点这儿去看看</a></p>
 
@@ -294,52 +294,32 @@
   </div>
 </footer>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
+    <% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+<% } %>
 
 <script>
 	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
+		fancybox: <%=theme.fancybox%>,
+		mathjax: <%=theme.mathjax%>,
+		animate: <%=theme.animate%>,
+		isHome: <%=is_home()%>,
+		isPost: <%=is_post()%>,
+		isArchive: <%=is_archive()%>,
+		isTag: <%=is_tag()%>,
+		isCategory: <%=is_category()%>,
+		open_in_new: <%=theme.open_in_new%>
 	}
 </script>
-<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
+<%- js('js/main') %>
 
 
+<%- partial('google-analytics') %>
 
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
+<% if (theme.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
   </div>
 </body>
 </html>
