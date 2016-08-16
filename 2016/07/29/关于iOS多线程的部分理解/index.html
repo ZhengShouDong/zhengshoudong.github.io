@@ -6,40 +6,37 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>关于iOS多线程的部分理解 | ZhengShouDong_Blog|郑守栋博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##关于iOS开发的多线程的理解
-1.iOS中有4套多线程的方案,分别是
+  <meta name="description" content="关于iOS开发的多线程的理解1.iOS中有4套多线程的方案,分别是
 
 Pthreads
 NSThread
 GCD
 NSOperation &amp;amp; NSOperationQueue本文会讲一些”线程同步、 延时执行、 单例模式”
 
-###Pthreads这个多线程方案全称为:POSIX threads,Pthreads是它的简称,是线程的POSIX标准.该标准定义了创建和操纵线程的一整套A">
+Pthreads这个多线程方案全称为:POSIX threads,Pthreads是它的简称,是线程的POSIX标准.该标准定义了创建和操纵线程的一整套API. 在类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于iOS多线程的部分理解">
 <meta property="og:url" content="https://zhengshoudong.github.io/2016/07/29/关于iOS多线程的部分理解/index.html">
 <meta property="og:site_name" content="ZhengShouDong_Blog|郑守栋博客">
-<meta property="og:description" content="##关于iOS开发的多线程的理解
-1.iOS中有4套多线程的方案,分别是
+<meta property="og:description" content="关于iOS开发的多线程的理解1.iOS中有4套多线程的方案,分别是
 
 Pthreads
 NSThread
 GCD
 NSOperation &amp;amp; NSOperationQueue本文会讲一些”线程同步、 延时执行、 单例模式”
 
-###Pthreads这个多线程方案全称为:POSIX threads,Pthreads是它的简称,是线程的POSIX标准.该标准定义了创建和操纵线程的一整套A">
-<meta property="og:updated_time" content="2016-07-29T12:27:27.000Z">
+Pthreads这个多线程方案全称为:POSIX threads,Pthreads是它的简称,是线程的POSIX标准.该标准定义了创建和操纵线程的一整套API. 在类">
+<meta property="og:updated_time" content="2016-08-16T04:01:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于iOS多线程的部分理解">
-<meta name="twitter:description" content="##关于iOS开发的多线程的理解
-1.iOS中有4套多线程的方案,分别是
+<meta name="twitter:description" content="关于iOS开发的多线程的理解1.iOS中有4套多线程的方案,分别是
 
 Pthreads
 NSThread
 GCD
 NSOperation &amp;amp; NSOperationQueue本文会讲一些”线程同步、 延时执行、 单例模式”
 
-###Pthreads这个多线程方案全称为:POSIX threads,Pthreads是它的简称,是线程的POSIX标准.该标准定义了创建和操纵线程的一整套A">
+Pthreads这个多线程方案全称为:POSIX threads,Pthreads是它的简称,是线程的POSIX标准.该标准定义了创建和操纵线程的一整套API. 在类">
   
     <link rel="alternative" href="/atom.xml" title="ZhengShouDong_Blog|郑守栋博客" type="application/atom+xml">
   
@@ -238,21 +235,19 @@ NSOperation &amp;amp; NSOperationQueue本文会讲一些”线程同步、 延�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##关于iOS开发的多线程的理解</p>
-<p>1.iOS中有4套多线程的方案,分别是</p>
+        <h2 id="关于iOS开发的多线程的理解"><a href="#关于iOS开发的多线程的理解" class="headerlink" title="关于iOS开发的多线程的理解"></a>关于iOS开发的多线程的理解</h2><p>1.iOS中有4套多线程的方案,分别是</p>
 <ul>
 <li>Pthreads</li>
 <li>NSThread</li>
 <li>GCD</li>
 <li>NSOperation &amp; NSOperationQueue<br>本文会讲一些”线程同步、 延时执行、 单例模式”</li>
 </ul>
-<p>###Pthreads<br>这个多线程方案全称为:POSIX threads,Pthreads是它的简称,是线程的POSIX标准.该标准定义了创建和操纵线程的一整套API. 在类操作系统(Unix,Linux,Mas OS等等)中,都可以使用Pthreads作为操作系统的线程.</p>
+<h3 id="Pthreads"><a href="#Pthreads" class="headerlink" title="Pthreads"></a>Pthreads</h3><p>这个多线程方案全称为:POSIX threads,Pthreads是它的简称,是线程的POSIX标准.该标准定义了创建和操纵线程的一整套API. 在类操作系统(Unix,Linux,Mas OS等等)中,都可以使用Pthreads作为操作系统的线程.</p>
 <p>这是在多平台上通用的API,所以移植性很强,当然在iOS中也是可以用的.这是基于C的框架.使用起来涉及底层较多.感受一下:<br><a id="more"></a></p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">第一步:</div><div class="line"> <span class="meta">#import<span class="meta-string">&lt;pthread.h&gt;</span></span></div><div class="line">然后创建线程，并执行任务</div><div class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span> *)touches withEvent:(<span class="built_in">UIEvent</span> *)event &#123;</div><div class="line">    pthread_t thread;</div><div class="line">    <span class="comment">//创建一个线程并自动执行</span></div><div class="line">    pthread_create(&amp;thread, <span class="literal">NULL</span>, start, <span class="literal">NULL</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> *start(<span class="keyword">void</span> *data) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>打印输出:<br>2016-07-28 23:57:21.689 testThread[10616:2644653] <nsthread: 0x7fbb48d33690="">{number = 2, name = (null)}</nsthread:></p>
 <p>这是C语言函数,需要手动处理线程的各个状态,说白了就是手动管理生命周期,比如上面这段代码虽然创建了一个线程,但并没有销毁线程.</p>
-<p>###NSThread</p>
-<p>NSThread是经过Apple公司封装后的,并且是完全面向对象的.所以可以直接操作线程对象,非常直观和方便.但是它的生命周期还是需要手动管理的,所以这套方案未来的开发之路没有要求的情况下也是偶尔用用的,有更好用的为什么不用呢.下面说说更好的框架. 这个方案常用的一个类方法就是<code>[NSThread currentThread]</code>,它可以获取当前线程类,你就可以知道当前线程的各种信息,很方便,比较多的用于调试.下面看看它的一些用法:</p>
+<h3 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h3><p>NSThread是经过Apple公司封装后的,并且是完全面向对象的.所以可以直接操作线程对象,非常直观和方便.但是它的生命周期还是需要手动管理的,所以这套方案未来的开发之路没有要求的情况下也是偶尔用用的,有更好用的为什么不用呢.下面说说更好的框架. 这个方案常用的一个类方法就是<code>[NSThread currentThread]</code>,它可以获取当前线程类,你就可以知道当前线程的各种信息,很方便,比较多的用于调试.下面看看它的一些用法:</p>
 <ul>
 <li>先创建线程类，再启动</li>
 </ul>
@@ -270,26 +265,21 @@ NSOperation &amp;amp; NSOperationQueue本文会讲一些”线程同步、 延�
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//取消线程</span></div><div class="line">- (<span class="keyword">void</span>)cancel;</div><div class="line"></div><div class="line"><span class="comment">//启动线程</span></div><div class="line">- (<span class="keyword">void</span>)start;</div><div class="line"></div><div class="line"><span class="comment">//判断某个线程的状态的属性</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">getter</span>=isExecuting) <span class="built_in">BOOL</span> executing;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">getter</span>=isFinished) <span class="built_in">BOOL</span> finished;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">getter</span>=isCancelled) <span class="built_in">BOOL</span> cancelled;</div><div class="line"></div><div class="line"><span class="comment">//设置和获取线程名字</span></div><div class="line">-(<span class="keyword">void</span>)setName:(<span class="built_in">NSString</span> *)n;</div><div class="line">-(<span class="built_in">NSString</span> *)name;</div><div class="line"></div><div class="line"><span class="comment">//获取当前线程信息</span></div><div class="line">+ (<span class="built_in">NSThread</span> *)currentThread;</div><div class="line"></div><div class="line"><span class="comment">//获取主线程信息</span></div><div class="line">+ (<span class="built_in">NSThread</span> *)mainThread;</div><div class="line"></div><div class="line"><span class="comment">//使当前线程暂停一段时间，或者暂停到某个时刻</span></div><div class="line">+ (<span class="keyword">void</span>)sleepForTimeInterval:(<span class="built_in">NSTimeInterval</span>)time;</div><div class="line">+ (<span class="keyword">void</span>)sleepUntilDate:(<span class="built_in">NSDate</span> *)date;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>###GCD</p>
-<p><code>Grand Central Dispatch</code>是苹果为多核心的并行运算提出的解决方案,所以或自动合理的利用更多的CPU内核(比如双核,四核),最重要是它会自动管理线程的生命周期(创建线程,调度任务,销毁线程),完全不需要我们管理,我们只需要告诉干什么就行.同时它使用的也是<code>C语言</code>,不过由于使用了Block(swift里叫做闭包),所以让使用起来更加的方便灵活.所以GCD这套方案是最常用的.原因就是好用啊,(好好学这个,实用!当然其它的也是要了解明白,多明白些没有坏处滴)</p>
-<p>###任务和队列</p>
-<p>在<code>GCD</code>中，加入了两个非常重要的概念：<code>任务</code>和 <code>队列</code></p>
+<h3 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h3><p><code>Grand Central Dispatch</code>是苹果为多核心的并行运算提出的解决方案,所以或自动合理的利用更多的CPU内核(比如双核,四核),最重要是它会自动管理线程的生命周期(创建线程,调度任务,销毁线程),完全不需要我们管理,我们只需要告诉干什么就行.同时它使用的也是<code>C语言</code>,不过由于使用了Block(swift里叫做闭包),所以让使用起来更加的方便灵活.所以GCD这套方案是最常用的.原因就是好用啊,(好好学这个,实用!当然其它的也是要了解明白,多明白些没有坏处滴)</p>
+<h3 id="任务和队列"><a href="#任务和队列" class="headerlink" title="任务和队列"></a>任务和队列</h3><p>在<code>GCD</code>中，加入了两个非常重要的概念：<code>任务</code>和 <code>队列</code></p>
 <ul>
 <li>任务:就是操作,你想干什么,说白了就是你要在这里面执行什么操作的代码,在GCD中就是个Block,所以添加任务十分的方便,任务分为两种执行方式:<code>同步执行</code>和<code>异步执行</code>,他们之间的区别是!!!<code>会不会阻塞当前线程，直到 Block 中的任务执行完毕！</code>.</li>
 </ul>
-<p>#####同步执行(sync):会阻塞当前线程并等待 Block 中的任务执行完毕，然后当前线程才会继续往下运行.</p>
-<p>#####异步执行(async):当前线程会直接往下执行，它不会阻塞当前线程.</p>
-<ul>
+<h5 id="同步执行-sync-会阻塞当前线程并等待-Block-中的任务执行完毕，然后当前线程才会继续往下运行"><a href="#同步执行-sync-会阻塞当前线程并等待-Block-中的任务执行完毕，然后当前线程才会继续往下运行" class="headerlink" title="同步执行(sync):会阻塞当前线程并等待 Block 中的任务执行完毕，然后当前线程才会继续往下运行."></a>同步执行(sync):会阻塞当前线程并等待 Block 中的任务执行完毕，然后当前线程才会继续往下运行.</h5><h5 id="异步执行-async-当前线程会直接往下执行，它不会阻塞当前线程"><a href="#异步执行-async-当前线程会直接往下执行，它不会阻塞当前线程" class="headerlink" title="异步执行(async):当前线程会直接往下执行，它不会阻塞当前线程."></a>异步执行(async):当前线程会直接往下执行，它不会阻塞当前线程.</h5><ul>
 <li>队列:用于存放任务.一共有两种队列,<code>串行队列</code>和<code>并行队列</code></li>
 </ul>
 <p><code>串行队列</code>放到串行队列的任务，GCD 会 FIFO（先进先出） 地取出来一个，执行一个，然后取下一个，这样一个一个的执行.</p>
 <p><code>并行队列</code>放到并行队列的任务，GCD 也会 FIFO的取出来，但不同的是，它取出来一个就会放到别的线程，然后再取出来一个又放到另一个的线程。这样由于取的动作很快，忽略不计，看起来，所有的任务都是一起执行的。不过需要注意，GCD 会根据系统资源控制并行的数量，所以如果任务很多，它并不会让所有任务同时执行.</p>
-<p>#######同步执行(串行队列):当前线程，一个一个执行</p>
-<p>#######异步执行(串行队列):当前线程，一个一个执行</p>
-<p>#######异步执行(串行队列):其他线程，一个一个执行</p>
-<p>#######异步执行(并行队列):开很多线程，一起执行</p>
-<p>###创建队列</p>
-<ul>
+<p>####### 同步执行(串行队列):当前线程，一个一个执行</p>
+<p>####### 异步执行(串行队列):当前线程，一个一个执行</p>
+<p>####### 异步执行(串行队列):其他线程，一个一个执行</p>
+<p>####### 异步执行(并行队列):开很多线程，一起执行</p>
+<h3 id="创建队列"><a href="#创建队列" class="headerlink" title="创建队列"></a>创建队列</h3><ul>
 <li>主队列:这是一个特殊的<code>串行队列</code> 什么是主队列? 主队列用于刷新 UI，任何需要刷新 UI 的工作都要在主队列执行，所以一般耗时的任务都要放到别的线程执行。</li>
 </ul>
  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//主队列代码</span></div><div class="line"><span class="keyword">dispatch_queue_t</span> <span class="built_in">queue</span> = ispatch_get_main_queue();</div></pre></td></tr></table></figure>
@@ -303,8 +293,7 @@ NSOperation &amp;amp; NSOperationQueue本文会讲一些”线程同步、 延�
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dispatch_queue_t </span>queue = <span class="keyword">dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, </span><span class="number">0</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>###创建任务</p>
-<ul>
+<h3 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h3><ul>
 <li>同步任务:会阻塞当前线程 (SYNC)</li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_sync</span>(&lt;<span class="meta">#queue#&gt;, ^&#123;</span></div><div class="line">     <span class="comment">//code here</span></div><div class="line">     <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
@@ -313,11 +302,10 @@ NSOperation &amp;amp; NSOperationQueue本文会讲一些”线程同步、 延�
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_async</span>(&lt;<span class="meta">#queue#&gt;, ^&#123;</span></div><div class="line">      <span class="comment">//code here</span></div><div class="line">      <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
 <p>  代码实例</p>
-<p>######代码一</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSLog(<span class="string">"之前 - %@"</span>, NSThread.currentThread())</div><div class="line">dispatch_sync(<span class="name">dispatch_get_main_queue</span>(), &#123; () -&gt; Void in </div><div class="line">        NSLog(<span class="string">"sync - %@"</span>, NSThread.currentThread())</div><div class="line">&#125;)</div><div class="line">NSLog(<span class="string">"之后 - %@"</span>, NSThread.currentThread())</div></pre></td></tr></table></figure>
-<p>######执行结果<br>只会打印第一句：之前 - <nsthread: 0x7fb3a9e16470="">{number = 1, name = main} ，然后主线程就卡死了，你可以在界面上放一个按钮，你就会发现点不了了。</nsthread:></p>
-<p>######为什么?<br>同步任务会阻塞当前线程，然后把 Block 中的任务放到指定的队列中执行，只有等到 Block 中的任务完成后才会让当前线程继续往下运行。<br>打印完第一句后<code>dispatch_sync</code>立即阻塞当前的主线程，然后把 Block 中的任务放到<code>main_queue</code>中，可是<code>main_queue</code>中的任务会被取出来放到主线程中执行，但主线程这个时候已经被阻塞了，所以 Block 中的任务就不能完成，它不完成,<code>dispatch_sync</code>就会一直阻塞主线程，这就是死锁现象。导致主线程一直卡死。</p>
-<p>######代码二<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">let queue = dispatch_queue_create(<span class="string">"myQueue"</span>, DISPATCH_QUEUE_SERIAL)</div><div class="line">   NSLog(<span class="string">"之前 - %@"</span>, NSThread.currentThread())</div><div class="line">    dispatch_async(<span class="name">queue</span>, &#123; () -&gt; Void in</div><div class="line">        NSLog(<span class="string">"sync之前 - %@"</span>, NSThread.currentThread())</div><div class="line">        dispatch_sync(<span class="name">queue</span>, &#123; () -&gt; Void in</div><div class="line">             NSLog(<span class="string">"sync - %@"</span>, NSThread.currentThread())</div><div class="line">        &#125;)</div><div class="line">        NSLog(<span class="string">"sync之后 - %@"</span>, NSThread.currentThread())</div><div class="line">   &#125;)</div><div class="line">  NSLog(<span class="string">"之后 - %@"</span>, NSThread.currentThread())</div></pre></td></tr></table></figure></p>
+<h6 id="代码一"><a href="#代码一" class="headerlink" title="代码一"></a>代码一</h6><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">NSLog(<span class="string">"之前 - %@"</span>, NSThread.currentThread())</div><div class="line">dispatch_sync(<span class="name">dispatch_get_main_queue</span>(), &#123; () -&gt; Void in </div><div class="line">        NSLog(<span class="string">"sync - %@"</span>, NSThread.currentThread())</div><div class="line">&#125;)</div><div class="line">NSLog(<span class="string">"之后 - %@"</span>, NSThread.currentThread())</div></pre></td></tr></table></figure>
+<h6 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h6><p>只会打印第一句：之前 - <nsthread: 0x7fb3a9e16470="">{number = 1, name = main} ，然后主线程就卡死了，你可以在界面上放一个按钮，你就会发现点不了了。</nsthread:></p>
+<h6 id="为什么"><a href="#为什么" class="headerlink" title="为什么?"></a>为什么?</h6><p>同步任务会阻塞当前线程，然后把 Block 中的任务放到指定的队列中执行，只有等到 Block 中的任务完成后才会让当前线程继续往下运行。<br>打印完第一句后<code>dispatch_sync</code>立即阻塞当前的主线程，然后把 Block 中的任务放到<code>main_queue</code>中，可是<code>main_queue</code>中的任务会被取出来放到主线程中执行，但主线程这个时候已经被阻塞了，所以 Block 中的任务就不能完成，它不完成,<code>dispatch_sync</code>就会一直阻塞主线程，这就是死锁现象。导致主线程一直卡死。</p>
+<h6 id="代码二"><a href="#代码二" class="headerlink" title="代码二"></a>代码二</h6><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">let queue = dispatch_queue_create(<span class="string">"myQueue"</span>, DISPATCH_QUEUE_SERIAL)</div><div class="line">   NSLog(<span class="string">"之前 - %@"</span>, NSThread.currentThread())</div><div class="line">    dispatch_async(<span class="name">queue</span>, &#123; () -&gt; Void in</div><div class="line">        NSLog(<span class="string">"sync之前 - %@"</span>, NSThread.currentThread())</div><div class="line">        dispatch_sync(<span class="name">queue</span>, &#123; () -&gt; Void in</div><div class="line">             NSLog(<span class="string">"sync - %@"</span>, NSThread.currentThread())</div><div class="line">        &#125;)</div><div class="line">        NSLog(<span class="string">"sync之后 - %@"</span>, NSThread.currentThread())</div><div class="line">   &#125;)</div><div class="line">  NSLog(<span class="string">"之后 - %@"</span>, NSThread.currentThread())</div></pre></td></tr></table></figure>
 <p>待更新…</p>
 
       

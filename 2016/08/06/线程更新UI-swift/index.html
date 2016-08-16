@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>线程更新UI_swift | ZhengShouDong_Blog|郑守栋博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##线程常用代码–笔记">
+  <meta name="description" content="线程常用代码–笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程更新UI_swift">
 <meta property="og:url" content="https://zhengshoudong.github.io/2016/08/06/线程更新UI-swift/index.html">
 <meta property="og:site_name" content="ZhengShouDong_Blog|郑守栋博客">
-<meta property="og:description" content="##线程常用代码–笔记">
-<meta property="og:updated_time" content="2016-08-09T05:15:46.000Z">
+<meta property="og:description" content="线程常用代码–笔记">
+<meta property="og:updated_time" content="2016-08-16T04:01:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程更新UI_swift">
-<meta name="twitter:description" content="##线程常用代码–笔记">
+<meta name="twitter:description" content="线程常用代码–笔记">
   
     <link rel="alternative" href="/atom.xml" title="ZhengShouDong_Blog|郑守栋博客" type="application/atom+xml">
   
@@ -214,8 +214,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##线程常用代码–笔记</p>
-<a id="more"></a>
+        <h2 id="线程常用代码–笔记"><a href="#线程常用代码–笔记" class="headerlink" title="线程常用代码–笔记"></a>线程常用代码–笔记</h2><a id="more"></a>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.全局-异步回调主线程（加优先级）</span></div><div class="line"><span class="function"><span class="title">dispatch_async</span><span class="params">(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>)</span></span>, &#123;</div><div class="line">     dispatch_sync(dispatch_get_main_queue(),&#123;</div><div class="line">          <span class="comment">// do something                       </span></div><div class="line">     &#125;)</div><div class="line">&#125;)</div><div class="line"><span class="comment">//2.全局异步回调（优先级）                            </span></div><div class="line"><span class="function"><span class="title">dispatch_async</span><span class="params">(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>)</span></span>)&#123;</div><div class="line">          <span class="comment">// do something</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//3.异步回调主线程</span></div><div class="line"><span class="function"><span class="title">dispatch_async</span><span class="params">(dispatch_get_main_queue()</span></span>,&#123;</div><div class="line">          <span class="comment">// do something</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
       
     </div>
