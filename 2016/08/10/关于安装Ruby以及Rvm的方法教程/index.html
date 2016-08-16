@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://zhengshoudong.github.io/2016/08/10/关于安装Ruby以及Rvm的方法教程/index.html">
 <meta property="og:site_name" content="ZhengShouDong_Blog|郑守栋博客">
 <meta property="og:description" content="关于安装cocoapods大家遇到最多的问题就是需要ruby的版本&amp;gt;=2.2.2,然后大家跑去安装ruby,发现ruby是依赖于其他的系统库文件,想要安装ruby,就要先安装rvm,坑爹啊 可是我们Mac os系统只是自带了ruby却没有自带rvm,下面说说如何进行安装rvm还有ruby">
-<meta property="og:updated_time" content="2016-08-16T03:44:10.000Z">
+<meta property="og:updated_time" content="2016-08-16T04:02:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于安装Ruby以及Rvm的方法教程">
 <meta name="twitter:description" content="关于安装cocoapods大家遇到最多的问题就是需要ruby的版本&amp;gt;=2.2.2,然后大家跑去安装ruby,发现ruby是依赖于其他的系统库文件,想要安装ruby,就要先安装rvm,坑爹啊 可是我们Mac os系统只是自带了ruby却没有自带rvm,下面说说如何进行安装rvm还有ruby">
@@ -321,52 +321,32 @@
   </div>
 </footer>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
+    <% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+<% } %>
 
 <script>
 	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
+		fancybox: <%=theme.fancybox%>,
+		mathjax: <%=theme.mathjax%>,
+		animate: <%=theme.animate%>,
+		isHome: <%=is_home()%>,
+		isPost: <%=is_post()%>,
+		isArchive: <%=is_archive()%>,
+		isTag: <%=is_tag()%>,
+		isCategory: <%=is_category()%>,
+		open_in_new: <%=theme.open_in_new%>
 	}
 </script>
-<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
+<%- js('js/main') %>
 
 
+<%- partial('google-analytics') %>
 
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
+<% if (theme.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
   </div>
 </body>
 </html>

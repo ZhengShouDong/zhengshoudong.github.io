@@ -6,21 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>需要开机自启Apache服务的看过来 | ZhengShouDong_Blog|郑守栋博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##开机自动启动Apache-httpd服务器
-
+  <meta name="description" content="开机自动启动Apache-httpd服务器
 版本号1.0 刚刚完成,测试了几下没问题发出来给大家用!">
 <meta property="og:type" content="article">
 <meta property="og:title" content="需要开机自启Apache服务的看过来">
 <meta property="og:url" content="https://zhengshoudong.github.io/2016/08/08/需要开机自启Apache服务的看过来/index.html">
 <meta property="og:site_name" content="ZhengShouDong_Blog|郑守栋博客">
-<meta property="og:description" content="##开机自动启动Apache-httpd服务器
-
+<meta property="og:description" content="开机自动启动Apache-httpd服务器
 版本号1.0 刚刚完成,测试了几下没问题发出来给大家用!">
-<meta property="og:updated_time" content="2016-08-08T03:34:12.000Z">
+<meta property="og:updated_time" content="2016-08-16T04:02:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="需要开机自启Apache服务的看过来">
-<meta name="twitter:description" content="##开机自动启动Apache-httpd服务器
-
+<meta name="twitter:description" content="开机自动启动Apache-httpd服务器
 版本号1.0 刚刚完成,测试了几下没问题发出来给大家用!">
   
     <link rel="alternative" href="/atom.xml" title="ZhengShouDong_Blog|郑守栋博客" type="application/atom+xml">
@@ -220,8 +217,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##开机自动启动Apache-httpd服务器</p>
-<ul>
+        <h2 id="开机自动启动Apache-httpd服务器"><a href="#开机自动启动Apache-httpd服务器" class="headerlink" title="开机自动启动Apache-httpd服务器"></a>开机自动启动Apache-httpd服务器</h2><ul>
 <li>版本号1.0 刚刚完成,测试了几下没问题发出来给大家用!<a id="more"></a></li>
 <li>记住!只需要运行一次开启就可以搞定服务器的开机自启了</li>
 <li><p>由于目前阶段只是本地进行测试网站或者进行模拟数据的传输,所以以后不用了可以进行关闭服务避免浪费不必要的系统资源,话不多说</p>
@@ -303,52 +299,32 @@
   </div>
 </footer>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
+    <% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+<% } %>
 
 <script>
 	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
+		fancybox: <%=theme.fancybox%>,
+		mathjax: <%=theme.mathjax%>,
+		animate: <%=theme.animate%>,
+		isHome: <%=is_home()%>,
+		isPost: <%=is_post()%>,
+		isArchive: <%=is_archive()%>,
+		isTag: <%=is_tag()%>,
+		isCategory: <%=is_category()%>,
+		open_in_new: <%=theme.open_in_new%>
 	}
 </script>
-<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
+<%- js('js/main') %>
 
 
+<%- partial('google-analytics') %>
 
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
+<% if (theme.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
   </div>
 </body>
 </html>
