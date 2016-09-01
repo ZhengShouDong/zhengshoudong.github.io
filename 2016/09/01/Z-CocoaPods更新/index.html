@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Z_CocoaPods更新 | ZhengShouDong_Blog|郑守栋博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Z_CocoaPods更新!最新版本号1.7!!加入自动提示新版更新功能!赶快下载吧!点这儿下载">
+  <meta name="description" content="Z_CocoaPods更新!最新版本号1.7!!">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Z_CocoaPods更新">
 <meta property="og:url" content="https://zhengshoudong.github.io/2016/09/01/Z-CocoaPods更新/index.html">
 <meta property="og:site_name" content="ZhengShouDong_Blog|郑守栋博客">
-<meta property="og:description" content="Z_CocoaPods更新!最新版本号1.7!!加入自动提示新版更新功能!赶快下载吧!点这儿下载">
-<meta property="og:updated_time" content="2016-09-01T10:20:24.000Z">
+<meta property="og:description" content="Z_CocoaPods更新!最新版本号1.7!!">
+<meta property="og:updated_time" content="2016-09-01T10:21:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Z_CocoaPods更新">
-<meta name="twitter:description" content="Z_CocoaPods更新!最新版本号1.7!!加入自动提示新版更新功能!赶快下载吧!点这儿下载">
+<meta name="twitter:description" content="Z_CocoaPods更新!最新版本号1.7!!">
   
     <link rel="alternative" href="/atom.xml" title="ZhengShouDong_Blog|郑守栋博客" type="application/atom+xml">
   
@@ -214,7 +214,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Z-CocoaPods更新-最新版本号1-7-加入自动提示新版更新功能-赶快下载吧"><a href="#Z-CocoaPods更新-最新版本号1-7-加入自动提示新版更新功能-赶快下载吧" class="headerlink" title="Z_CocoaPods更新!最新版本号1.7!!加入自动提示新版更新功能!赶快下载吧!"></a>Z_CocoaPods更新!最新版本号1.7!!加入自动提示新版更新功能!赶快下载吧!</h4><h5 id="点这儿下载"><a href="#点这儿下载" class="headerlink" title="点这儿下载"></a><a href="http://zhengshoudong.qiniudn.com/Z_CocoaPods1_7.dmg" target="_blank" rel="external">点这儿下载</a></h5>
+        <h4 id="Z-CocoaPods更新-最新版本号1-7-加入自动提示新版更新功能-赶快下载吧"><a href="#Z-CocoaPods更新-最新版本号1-7-加入自动提示新版更新功能-赶快下载吧" class="headerlink" title="Z_CocoaPods更新!最新版本号1.7!!加入自动提示新版更新功能!赶快下载吧!"></a>Z_CocoaPods更新!最新版本号1.7!!<a id="more"></a>加入自动提示新版更新功能!赶快下载吧!</h4><h5 id="点这儿下载"><a href="#点这儿下载" class="headerlink" title="点这儿下载"></a><a href="http://zhengshoudong.qiniudn.com/Z_CocoaPods1_7.dmg" target="_blank" rel="external">点这儿下载</a></h5>
       
     </div>
     
@@ -280,32 +280,52 @@
   </div>
 </footer>
     </div>
-    <% if (theme.fancybox){ %>
-  <%- css('fancybox/jquery.fancybox') %>
-<% } %>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
 
 <script>
 	var yiliaConfig = {
-		fancybox: <%=theme.fancybox%>,
-		mathjax: <%=theme.mathjax%>,
-		animate: <%=theme.animate%>,
-		isHome: <%=is_home()%>,
-		isPost: <%=is_post()%>,
-		isArchive: <%=is_archive()%>,
-		isTag: <%=is_tag()%>,
-		isCategory: <%=is_category()%>,
-		open_in_new: <%=theme.open_in_new%>
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
 	}
 </script>
-<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
-<%- js('js/main') %>
+<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
-<%- partial('google-analytics') %>
 
-<% if (theme.mathjax){ %>
-<%- partial('mathjax') %>
-<% } %>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
   </div>
 </body>
 </html>
