@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Z_FixComment更新,一大波更新即将来临! | ZhengShouDong_Blog|郑守栋博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="更新更新!版本号1.2!此软件是为解决Xcode8测试版存在的注释快捷键问题而生点这儿下载">
+  <meta name="description" content="更新更新!版本号1.2!">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Z_FixComment更新,一大波更新即将来临!">
 <meta property="og:url" content="https://zhengshoudong.github.io/2016/09/01/Z_FixComment更新,一大波更新即将来临!/index.html">
 <meta property="og:site_name" content="ZhengShouDong_Blog|郑守栋博客">
-<meta property="og:description" content="更新更新!版本号1.2!此软件是为解决Xcode8测试版存在的注释快捷键问题而生点这儿下载">
-<meta property="og:updated_time" content="2016-09-01T09:41:57.000Z">
+<meta property="og:description" content="更新更新!版本号1.2!">
+<meta property="og:updated_time" content="2016-09-01T09:43:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Z_FixComment更新,一大波更新即将来临!">
-<meta name="twitter:description" content="更新更新!版本号1.2!此软件是为解决Xcode8测试版存在的注释快捷键问题而生点这儿下载">
+<meta name="twitter:description" content="更新更新!版本号1.2!">
   
     <link rel="alternative" href="/atom.xml" title="ZhengShouDong_Blog|郑守栋博客" type="application/atom+xml">
   
@@ -214,7 +214,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="更新更新-版本号1-2-此软件是为解决Xcode8测试版存在的注释快捷键问题而生"><a href="#更新更新-版本号1-2-此软件是为解决Xcode8测试版存在的注释快捷键问题而生" class="headerlink" title="更新更新!版本号1.2!此软件是为解决Xcode8测试版存在的注释快捷键问题而生"></a>更新更新!版本号1.2!此软件是为解决Xcode8测试版存在的注释快捷键问题而生</h4><h6 id="点这儿下载"><a href="#点这儿下载" class="headerlink" title="点这儿下载"></a><a href="http://zhengshoudong.qiniudn.com/Z_FixComment1_2.dmg" target="_blank" rel="external">点这儿下载</a></h6>
+        <h4 id="更新更新-版本号1-2-此软件是为解决Xcode8测试版存在的注释快捷键问题而生"><a href="#更新更新-版本号1-2-此软件是为解决Xcode8测试版存在的注释快捷键问题而生" class="headerlink" title="更新更新!版本号1.2!此软件是为解决Xcode8测试版存在的注释快捷键问题而生"></a>更新更新!版本号1.2!<a id="more"></a>此软件是为解决Xcode8测试版存在的注释快捷键问题而生</h4><h6 id="点这儿下载"><a href="#点这儿下载" class="headerlink" title="点这儿下载"></a><a href="http://zhengshoudong.qiniudn.com/Z_FixComment1_2.dmg" target="_blank" rel="external">点这儿下载</a></h6>
       
     </div>
     
@@ -280,32 +280,52 @@
   </div>
 </footer>
     </div>
-    <% if (theme.fancybox){ %>
-  <%- css('fancybox/jquery.fancybox') %>
-<% } %>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
 
 <script>
 	var yiliaConfig = {
-		fancybox: <%=theme.fancybox%>,
-		mathjax: <%=theme.mathjax%>,
-		animate: <%=theme.animate%>,
-		isHome: <%=is_home()%>,
-		isPost: <%=is_post()%>,
-		isArchive: <%=is_archive()%>,
-		isTag: <%=is_tag()%>,
-		isCategory: <%=is_category()%>,
-		open_in_new: <%=theme.open_in_new%>
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
 	}
 </script>
-<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
-<%- js('js/main') %>
+<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
-<%- partial('google-analytics') %>
 
-<% if (theme.mathjax){ %>
-<%- partial('mathjax') %>
-<% } %>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
   </div>
 </body>
 </html>
