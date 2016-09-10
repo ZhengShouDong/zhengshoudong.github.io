@@ -201,14 +201,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="有一阵子没更新博客了-更新一下ZHosts-版本号2-5"><a href="#有一阵子没更新博客了-更新一下ZHosts-版本号2-5" class="headerlink" title="有一阵子没更新博客了,更新一下ZHosts,版本号2.5"></a>有一阵子没更新博客了,更新一下ZHosts,版本号2.5</h4><p>更新内容如下:</p>
-<ol>
-<li>进行了UI调整</li>
-<li>内部速度优化</li>
-<li>功能增加(还在内部测试..)</li>
-</ol>
-<p>上地址咯 </p>
-<h4 id="点我去下载"><a href="#点我去下载" class="headerlink" title="点我去下载"></a><a href="http://zhengshoudong.qiniudn.com/ZHosts2_5.dmg" target="_blank" rel="external">点我去下载</a></h4>
+        <h4 id="有一阵子没更新博客了-更新一下ZHosts-版本号2-5"><a href="#有一阵子没更新博客了-更新一下ZHosts-版本号2-5" class="headerlink" title="有一阵子没更新博客了,更新一下ZHosts,版本号2.5"></a>有一阵子没更新博客了,更新一下ZHosts,版本号2.5</h4><p>更新内容如下:<br>
       
     </div>
     
@@ -221,6 +214,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/10/ZHosts2.5更新啦!!/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -562,52 +559,32 @@
   </div>
 </footer>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
+    <% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+<% } %>
 
 <script>
 	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: true,
-		isPost: false,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
+		fancybox: <%=theme.fancybox%>,
+		mathjax: <%=theme.mathjax%>,
+		animate: <%=theme.animate%>,
+		isHome: <%=is_home()%>,
+		isPost: <%=is_post()%>,
+		isArchive: <%=is_archive()%>,
+		isTag: <%=is_tag()%>,
+		isCategory: <%=is_category()%>,
+		open_in_new: <%=theme.open_in_new%>
 	}
 </script>
-<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
+<%- js('js/main') %>
 
 
+<%- partial('google-analytics') %>
 
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
+<% if (theme.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
   </div>
 </body>
 </html>
