@@ -201,7 +201,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="新版本发布-目前Xcode8正式版本已经推出-由于大家电脑上有时候安装的不只两个Xcode-新版本加强了逻辑判断-优先打开测试版本的Xcode-软件版本号1-3-fa-certificate"><a href="#新版本发布-目前Xcode8正式版本已经推出-由于大家电脑上有时候安装的不只两个Xcode-新版本加强了逻辑判断-优先打开测试版本的Xcode-软件版本号1-3-fa-certificate" class="headerlink" title="新版本发布,目前Xcode8正式版本已经推出. 由于大家电脑上有时候安装的不只两个Xcode,新版本加强了逻辑判断.优先打开测试版本的Xcode. 软件版本号1.3:fa-certificate:"></a>新版本发布,目前Xcode8正式版本已经推出. 由于大家电脑上有时候安装的不只两个Xcode,新版本加强了逻辑判断.优先打开测试版本的Xcode. 软件版本号1.3:fa-certificate:</h3><h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a><a href="http://zhengshoudong.qiniudn.com/Z_FixComment1_3.dmg" target="_blank" rel="external">下载链接</a></h2>
+        <h3 id="新版本发布-目前Xcode8正式版本已经推出-由于大家电脑上有时候安装的不只两个Xcode-新版本加强了逻辑判断-优先打开测试版本的Xcode-软件版本号1-3-fa-certificate"><a href="#新版本发布-目前Xcode8正式版本已经推出-由于大家电脑上有时候安装的不只两个Xcode-新版本加强了逻辑判断-优先打开测试版本的Xcode-软件版本号1-3-fa-certificate" class="headerlink" title="新版本发布,目前Xcode8正式版本已经推出,由于大家电脑上有时候安装的不只两个Xcode,新版本加强了逻辑判断.优先打开测试版本的Xcode. 软件版本号1.3:fa-certificate:"></a>新版本发布,目前Xcode8正式版本已经推出
       
     </div>
     
@@ -214,6 +214,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/09/25/新版本Z-FixComment发布/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -557,32 +561,52 @@
   </div>
 </footer>
     </div>
-    <% if (theme.fancybox){ %>
-  <%- css('fancybox/jquery.fancybox') %>
-<% } %>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
 
 <script>
 	var yiliaConfig = {
-		fancybox: <%=theme.fancybox%>,
-		mathjax: <%=theme.mathjax%>,
-		animate: <%=theme.animate%>,
-		isHome: <%=is_home()%>,
-		isPost: <%=is_post()%>,
-		isArchive: <%=is_archive()%>,
-		isTag: <%=is_tag()%>,
-		isCategory: <%=is_category()%>,
-		open_in_new: <%=theme.open_in_new%>
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
 	}
 </script>
-<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
-<%- js('js/main') %>
+<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
-<%- partial('google-analytics') %>
 
-<% if (theme.mathjax){ %>
-<%- partial('mathjax') %>
-<% } %>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
   </div>
 </body>
 </html>
