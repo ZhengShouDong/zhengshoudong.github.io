@@ -216,15 +216,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="ZHosts2-8正式上线-包括2-7在内的版本都包含了一个严重的服务器错误-因为国内服务器-服务器2-故障的缘故-暂时下线了服务器2的运行-以后更新都只留了一个服务器-发现问题后第一时间做出相应举措-现在版本均已编译完毕-本次更新内容如下"><a href="#ZHosts2-8正式上线-包括2-7在内的版本都包含了一个严重的服务器错误-因为国内服务器-服务器2-故障的缘故-暂时下线了服务器2的运行-以后更新都只留了一个服务器-发现问题后第一时间做出相应举措-现在版本均已编译完毕-本次更新内容如下" class="headerlink" title="ZHosts2.8正式上线! 包括2.7在内的版本都包含了一个严重的服务器错误.因为国内服务器(服务器2)故障的缘故,暂时下线了服务器2的运行.以后更新都只留了一个服务器.发现问题后第一时间做出相应举措.现在版本均已编译完毕 本次更新内容如下:"></a>ZHosts2.8正式上线! 包括2.7在内的版本都包含了一个严重的服务器错误.因为国内服务器(服务器2)故障的缘故,暂时下线了服务器2的运行.以后更新都只留了一个服务器.发现问题后第一时间做出相应举措.现在版本均已编译完毕 本次更新内容如下:</h3><ol>
-<li>更新了内部的服务器的缓存机制</li>
-<li>加入了严格的算法机制,防止重复下载.造成服务器资源和本地资源的浪费</li>
-<li>修复了几个大家反馈的Bug</li>
-<li>快下载体验吧!</li>
-</ol>
-<h4 id="未来版本展望-下个版本我将进行模块开发一些细节上的问题-优化用户体验-让大家使用起来更好用"><a href="#未来版本展望-下个版本我将进行模块开发一些细节上的问题-优化用户体验-让大家使用起来更好用" class="headerlink" title="未来版本展望:下个版本我将进行模块开发一些细节上的问题,优化用户体验!让大家使用起来更好用~"></a>未来版本展望:下个版本我将进行模块开发一些细节上的问题,优化用户体验!让大家使用起来更好用~</h4><p><a href="http://zhengshoudong.qiniudn.com/ZHosts2_8.dmg" target="_blank" rel="external">2.8下载地址</a></p>
-<p><img src="http://zhengshoudong.qiniudn.com/20161116_1.png" alt=""></p>
-
+        <h3 id="ZHosts2-8正式上线-包括2-7在内的版本都包含了一个严重的服务器错误-因为国内服务器-服务器2-故障的缘故-暂时下线了服务器2的运行-以后更新都只留了一个服务器-发现问题后第一时间做出相应举措-现在版本均已编译完毕-本次更新内容如下"><a href="#ZHosts2-8正式上线-包括2-7在内的版本都包含了一个严重的服务器错误-因为国内服务器-服务器2-故障的缘故-暂时下线了服务器2的运行-以后更新都只留了一个服务器-发现问题后第一时间做出相应举措-现在版本均已编译完毕-本次更新内容如下" class="headerlink" title="ZHosts2.8正式上线! 包括2.7在内的版本都包含了一个严重的服务器错误.因为国内服务器(服务器2)故障的缘故,暂时下线了服务器2的运行.以后更新都只留了一个服务器.发现问题后第一时间做出相应举措.现在版本均已编译完毕 本次更新内容如下:"></a>ZHosts2.8正式上线! 包括2.7在内的版本都包含了一个严重的服务器错误.因为国内服务器(服务器2)故障的缘故,暂时下线了服务器2的运行.以后更新都只留了一个服务器.发现问题后第一时间做出相应举措.现在版本均已编译完毕
       
     </div>
     
@@ -237,6 +229,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/11/16/ZHosts新版本来袭建议所有用户进行版本更新/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -580,32 +576,52 @@
   </div>
 </footer>
     </div>
-    <% if (theme.fancybox){ %>
-  <%- css('fancybox/jquery.fancybox') %>
-<% } %>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
 
 <script>
 	var yiliaConfig = {
-		fancybox: <%=theme.fancybox%>,
-		mathjax: <%=theme.mathjax%>,
-		animate: <%=theme.animate%>,
-		isHome: <%=is_home()%>,
-		isPost: <%=is_post()%>,
-		isArchive: <%=is_archive()%>,
-		isTag: <%=is_tag()%>,
-		isCategory: <%=is_category()%>,
-		open_in_new: <%=theme.open_in_new%>
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
 	}
 </script>
-<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
-<%- js('js/main') %>
+<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
-<%- partial('google-analytics') %>
 
-<% if (theme.mathjax){ %>
-<%- partial('mathjax') %>
-<% } %>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
   </div>
 </body>
 </html>
