@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="ZhengShouDong_Blog|郑守栋博客">
 <meta property="og:description" content="ZHosts2.8正式上线! 包括2.7在内的版本都包含了一个严重的服务器错误.因为国内服务器(服务器2)故障的缘故,暂时下线了服务器2的运行.以后更新都只留了一个服务器.发现问题后第一时间做出相应举措.现在版本均已编译完毕">
 <meta property="og:image" content="http://zhengshoudong.qiniudn.com/20161116_1.png">
-<meta property="og:updated_time" content="2016-11-19T12:46:27.000Z">
+<meta property="og:updated_time" content="2016-11-19T12:47:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZHosts新版本来袭建议所有用户进行版本更新">
 <meta name="twitter:description" content="ZHosts2.8正式上线! 包括2.7在内的版本都包含了一个严重的服务器错误.因为国内服务器(服务器2)故障的缘故,暂时下线了服务器2的运行.以后更新都只留了一个服务器.发现问题后第一时间做出相应举措.现在版本均已编译完毕">
@@ -238,7 +238,7 @@
 <li>快下载体验吧!</li>
 </ol>
 <h4 id="未来版本展望-下个版本我将进行模块开发一些细节上的问题-优化用户体验-让大家使用起来更好用"><a href="#未来版本展望-下个版本我将进行模块开发一些细节上的问题-优化用户体验-让大家使用起来更好用" class="headerlink" title="未来版本展望:下个版本我将进行模块开发一些细节上的问题,优化用户体验!让大家使用起来更好用~"></a>未来版本展望:下个版本我将进行模块开发一些细节上的问题,优化用户体验!让大家使用起来更好用~</h4><p><a href="http://zhengshoudong.qiniudn.com/ZHosts2_8.dmg" target="_blank" rel="external">2.8下载地址</a></p>
-<div align="center"><br><img src="http://zhengshoudong.qiniudn.com/20161116_1.png" whitd="120" height="350" vertical-align="middle"></div>
+<div align="center"><br><img src="http://zhengshoudong.qiniudn.com/20161116_1.png" whitd="100" height="300" vertical-align:middle=""></div>
       
     </div>
     
@@ -304,52 +304,32 @@
   </div>
 </footer>
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
+    <% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+<% } %>
 
 <script>
 	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
+		fancybox: <%=theme.fancybox%>,
+		mathjax: <%=theme.mathjax%>,
+		animate: <%=theme.animate%>,
+		isHome: <%=is_home()%>,
+		isPost: <%=is_post()%>,
+		isArchive: <%=is_archive()%>,
+		isTag: <%=is_tag()%>,
+		isCategory: <%=is_category()%>,
+		open_in_new: <%=theme.open_in_new%>
 	}
 </script>
-<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
+<%- js('js/main') %>
 
 
+<%- partial('google-analytics') %>
 
-
-
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
+<% if (theme.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
   </div>
 </body>
 </html>
