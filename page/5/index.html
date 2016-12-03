@@ -190,6 +190,67 @@
 
       <div class="body-wrap">
   
+    <article id="post-ZHosts更新!新添加还原功能V2.2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/30/ZHosts更新!新添加还原功能V2.2/" class="article-date">
+  	<time datetime="2016-07-30T07:10:46.000Z" itemprop="datePublished">2016-07-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/30/ZHosts更新!新添加还原功能V2.2/">ZHosts更新!新添加还原功能V2.2</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="因为一些原因-更新Hosts文件更新器-版本2-2"><a href="#因为一些原因-更新Hosts文件更新器-版本2-2" class="headerlink" title="因为一些原因,更新Hosts文件更新器,版本2.2"></a>因为一些原因,更新Hosts文件更新器,版本2.2</h1><ul>
+<li>具体原因不想说了,添加了一个单独的功能
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zhosts更新器/">-Zhosts更新器</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/07/30/ZHosts更新!新添加还原功能V2.2/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-关于iOS多线程的部分理解" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -520,32 +581,52 @@
   </div>
 </footer>
     </div>
-    <% if (theme.fancybox){ %>
-  <%- css('fancybox/jquery.fancybox') %>
-<% } %>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
 
 <script>
 	var yiliaConfig = {
-		fancybox: <%=theme.fancybox%>,
-		mathjax: <%=theme.mathjax%>,
-		animate: <%=theme.animate%>,
-		isHome: <%=is_home()%>,
-		isPost: <%=is_post()%>,
-		isArchive: <%=is_archive()%>,
-		isTag: <%=is_tag()%>,
-		isCategory: <%=is_category()%>,
-		open_in_new: <%=theme.open_in_new%>
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
 	}
 </script>
-<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
-<%- js('js/main') %>
+<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
-<%- partial('google-analytics') %>
 
-<% if (theme.mathjax){ %>
-<%- partial('mathjax') %>
-<% } %>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
   </div>
 </body>
 </html>

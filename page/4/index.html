@@ -190,6 +190,66 @@
 
       <div class="body-wrap">
   
+    <article id="post-显示_隐藏系统文件工具" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/08/显示_隐藏系统文件工具/" class="article-date">
+  	<time datetime="2016-08-08T10:12:46.000Z" itemprop="datePublished">2016-08-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/08/显示_隐藏系统文件工具/">显示_隐藏系统文件工具</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="之前用Automator整过两个单独的程序出来-觉得还是有些不太方便"><a href="#之前用Automator整过两个单独的程序出来-觉得还是有些不太方便" class="headerlink" title="之前用Automator整过两个单独的程序出来,觉得还是有些不太方便"></a>之前用Automator整过两个单独的程序出来,觉得还是有些不太方便</h2><p>现在用swift来集成一下工具,有界面的感觉还是好一些的!
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac程序/">Mac程序</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/08/显示_隐藏系统文件工具/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-需要开机自启Apache服务的看过来" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -492,67 +552,6 @@
 
 
   
-    <article id="post-ZHosts更新!新添加还原功能V2.2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/30/ZHosts更新!新添加还原功能V2.2/" class="article-date">
-  	<time datetime="2016-07-30T07:10:46.000Z" itemprop="datePublished">2016-07-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/30/ZHosts更新!新添加还原功能V2.2/">ZHosts更新!新添加还原功能V2.2</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="因为一些原因-更新Hosts文件更新器-版本2-2"><a href="#因为一些原因-更新Hosts文件更新器-版本2-2" class="headerlink" title="因为一些原因,更新Hosts文件更新器,版本2.2"></a>因为一些原因,更新Hosts文件更新器,版本2.2</h1><ul>
-<li>具体原因不想说了,添加了一个单独的功能
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zhosts更新器/">-Zhosts更新器</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/07/30/ZHosts更新!新添加还原功能V2.2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -577,32 +576,52 @@
   </div>
 </footer>
     </div>
-    <% if (theme.fancybox){ %>
-  <%- css('fancybox/jquery.fancybox') %>
-<% } %>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
 
 <script>
 	var yiliaConfig = {
-		fancybox: <%=theme.fancybox%>,
-		mathjax: <%=theme.mathjax%>,
-		animate: <%=theme.animate%>,
-		isHome: <%=is_home()%>,
-		isPost: <%=is_post()%>,
-		isArchive: <%=is_archive()%>,
-		isTag: <%=is_tag()%>,
-		isCategory: <%=is_category()%>,
-		open_in_new: <%=theme.open_in_new%>
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
 	}
 </script>
-<%- js('http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
-<%- js('js/main') %>
+<script src="/js/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
 
-<%- partial('google-analytics') %>
 
-<% if (theme.mathjax){ %>
-<%- partial('mathjax') %>
-<% } %>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
   </div>
 </body>
 </html>
